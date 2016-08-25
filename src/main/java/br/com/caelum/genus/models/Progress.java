@@ -1,6 +1,6 @@
 package br.com.caelum.genus.models;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
@@ -11,10 +11,14 @@ public class Progress {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-    private String description;
-    private Calendar lastStatusDate;
+    private String lastStatusDescription;
+    private LocalDateTime lastStatusDate;
  
     public Progress() {
 	this.status = Status.TO_START;
+    }
+    
+    public Status getStatus() {
+	return status;
     }
 }

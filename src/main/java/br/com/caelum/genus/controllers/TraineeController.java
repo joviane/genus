@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.caelum.genus.daos.TraineeDao;
 import br.com.caelum.genus.models.Trainee;
@@ -19,16 +20,16 @@ public class TraineeController {
     private TraineeDao traineeDao;
 
     @RequestMapping(method=RequestMethod.GET)
-    public String form(Trainee trainee) {
-	return "trainee/form";
+    public ModelAndView form(Trainee trainee) {
+	return new ModelAndView("trainee/form").addObject("trainees", traineeDao.findAll());
     }
     
     @RequestMapping(method=RequestMethod.POST)
-    public String create(@Valid Trainee trainee, BindingResult result) {
+    public ModelAndView create(@Valid Trainee trainee, BindingResult result) {
 	if(result.hasErrors()){	    
 	    return form(trainee);
 	}
 	traineeDao.save(trainee);
-	return "success";
+	return new ModelAndView("redirect:/trainee");
     }
 }

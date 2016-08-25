@@ -8,7 +8,7 @@ import br.com.caelum.genus.models.Trainee;
 
 public interface TraineeDao extends Repository<Trainee, Integer> {
     
-    public Trainee save(Trainee trainee);
+    public void save(Trainee trainee);
     
     public List<Trainee> findAll();
     

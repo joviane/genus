@@ -1,6 +1,6 @@
 package br.com.caelum.genus.models;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +20,8 @@ public class Trainee {
     @NotBlank
     private String contact;
     private String subject;
-    private Calendar beginDate;
-    private Calendar firstClassDate;
+    private LocalDateTime beginDate;
+    private LocalDateTime firstClassDate;
     private Progress progress;
     
     public Trainee() {
@@ -52,10 +52,10 @@ public class Trainee {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-    public Calendar getBeginDate() {
+    public LocalDateTime getBeginDate() {
         return beginDate;
     }
-    public Calendar getFirstClassDate() {
+    public LocalDateTime getFirstClassDate() {
         return firstClassDate;
     }
     public Progress getProgress() {

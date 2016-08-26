@@ -6,7 +6,7 @@
 <%@taglib tagdir="/WEB-INF/tags" prefix="caelum"%>
 
 <caelum:page title="Login">
-	<div class="container" ng-show="!home.authenticated">
+	<div class="container">
 		<div>
 			With Github: <a href="/login/github">click here</a>
 		</div>

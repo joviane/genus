@@ -30,21 +30,6 @@
 	<script
 		src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
 	<script type="text/javascript">
-		angular.module("app", []).controller("home",
-				function($http, $location) {
-					var self = this;
-					self.logout = function() {
-						$http.post('/logout', {}).success(function() {
-							self.authenticated = false;
-							$location.path("/");
-						}).error(function(data) {
-							console.log("Logout failed")
-							self.authenticated = false;
-						});
-					};
-				});
-	</script>
-	<script type="text/javascript">
 		angular.module("app", []).controller("home", function($http) {
 			var self = this;
 			$http.get("/user").success(function(data) {
@@ -54,6 +39,15 @@
 				self.user = "N/A";
 				self.authenticated = false;
 			});
+			self.logout = function() {
+				$http.post('/logout', {}).success(function() {
+					self.authenticated = false;
+					$location.path("/");
+				}).error(function(data) {
+					console.log("Logout failed")
+					self.authenticated = false;
+				});
+			};
 		});
 	</script>
 </body>

@@ -15,10 +15,14 @@ public class Progress {
     private LocalDateTime lastStatusDate;
  
     public Progress() {
-	this.status = Status.TO_START;
+    	this.status = Status.TO_START;
     }
     
     public Status getStatus() {
 	return status;
     }
+    
+    public void setStatus(Status status) {
+		this.status = status;
+	}
 }

@@ -7,5 +7,8 @@ public enum Status {
     GIVE_UP,
     DISMISSED,
     DELAYED,
-    READY
+    READY;
+	public String getName() { 
+		return name(); 
+	}
 }

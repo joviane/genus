@@ -4,16 +4,31 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="caelum"%>
-
 <caelum:page title="Instrutores">
 	<h3>Lista de instrutores</h3>
-
+	
+	<form action="/trainee/buscaPorStatus" method="post">
+		<select name="status">
+			<c:forEach items="${viewHelper.statusList()}" var="status">
+				<option value="${status.name}"
+					${trainee.progress.status.name == status.name?"selected":""}>
+					${status.name}</option>
+			</c:forEach>
+		</select>
+		<input type="submit" value="Buscar"/>
+	</form>
+	<form action="/trainee/buscaPorPeriodo" method="post">
+		<input type="date" name="inicio" />
+		<input type="date" name="fim" />
+		<input type="submit" value="Buscar"/>
+	</form>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Nome</th>
 				<th>Contato</th>
 				<th>Status</th>
+				<th>Faltas</th>
 				<th>Ações</th>
 			</tr>
 		</thead>
@@ -31,7 +46,17 @@
 							</c:forEach>
 						</select>
 					</td>
-					<td><a href="/training/trainee/${trainee.id}">Novo treino</a></td>
+					<td class=${trainee.faltas.size()>2 ? "perigo" : ""}>
+						<select>
+							<c:forEach items="${trainee.faltas}" var="falta">
+								<option>${falta}</option>
+							</c:forEach>
+						</select>
+					</td>
+					<td>
+						<a href="/training/trainee/${trainee.id}">Novo treino</a> |
+						<a href="/trainee/faltas/${trainee.id}">Faltou</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

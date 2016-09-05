@@ -6,7 +6,7 @@ public class InfoStatus {
 
 	private Status status;
 	
-	private Long traineeId;
+	private Integer traineeId;
 
 	public Status getStatus() {
 		return status;
@@ -16,11 +16,11 @@ public class InfoStatus {
 		this.status = status;
 	}
 
-	public Long getTraineeId() {
+	public Integer getTraineeId() {
 		return traineeId;
 	}
 
-	public void setTraineeId(Long id) {
+	public void setTraineeId(Integer id) {
 		this.traineeId = id;
 	}
 

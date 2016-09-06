@@ -1,5 +1,7 @@
 package br.com.caelum.genus.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.caelum.genus.daos.FaltaDao;
 import br.com.caelum.genus.daos.TraineeDao;
 import br.com.caelum.genus.dtos.InfoDataTrainee;
+import br.com.caelum.genus.dtos.InfoHorasDetalhado;
+import br.com.caelum.genus.dtos.InfoHorasGastas;
 import br.com.caelum.genus.dtos.InfoStatus;
 import br.com.caelum.genus.models.Falta;
 import br.com.caelum.genus.models.Status;
@@ -80,6 +84,20 @@ public class TraineeController {
 	public ModelAndView filtraPorStatus(Trainee trainee, InfoDataTrainee info){
 		return new ModelAndView("/trainee/form")
 				.addObject("trainees",traineeDao.findByPeriodo(info.getInicio().atStartOfDay(), info.getFim().atStartOfDay()));
+	}
+	
+	@RequestMapping(value="/relatorio")
+	public ModelAndView horasGastas(){
+		ModelAndView modelAndView = new ModelAndView("/trainee/horasGastas");
+		List<InfoHorasGastas> timeSpent = traineeDao.findTimeSpent();
+		return modelAndView.addObject("listaHoras",timeSpent);
+	}
+
+	@RequestMapping(value="/horasGastas/{traineeNome}")
+	public ModelAndView horasGastasDetalhadoDoTrainee(@PathVariable String traineeNome){
+		ModelAndView modelAndView = new ModelAndView("/trainee/horasGastas/detalhes");
+		List<InfoHorasDetalhado> timeSpentFromTrainee = traineeDao.findTimeSpentFromTrainee(traineeNome);
+		return modelAndView.addObject("listaHorasDetalhadas",timeSpentFromTrainee);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package br.com.caelum.genus.dtos;
+package br.com.caelum.genus.helpers;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;

@@ -1,5 +1,6 @@
 package br.com.caelum.genus.models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -88,18 +89,30 @@ public class Trainee {
 		this.progress.setStatus(status);
 	}
 
-	public void changeStatus(Falta falta) {
-		this.faltas.add(falta);
-		this.progress.setLastStatusDescription("Faltou");
-		this.progress.setLastStatusDate(falta.getData());
-	}
-	
 	public List<Falta> getFaltas() {
 		return faltas;
 	}
+
+	public void adicionaFalta(Falta falta) {
+		this.faltas.add(falta);
+		atualizaStatusDescricao("Faltou", falta.getData());
+	}
+	
 	
 	public Falta ultimaFalta(){
 		return faltas.get(faltas.size()-1);
+	}
+
+	public int consecutiveMiss() {
+		if("Faltou".equals(this.progress.getLastStatusDescription())){
+			return this.ultimaFalta().getSeguidas() + 1;
+		}
+		return 0;
+	}
+
+	public void atualizaStatusDescricao(String descricao, LocalDate data) {
+		this.progress.setLastStatusDescription(descricao);
+		this.progress.setLastStatusDate(data);
 	}
 	
 }

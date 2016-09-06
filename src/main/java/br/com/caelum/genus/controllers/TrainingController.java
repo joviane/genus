@@ -1,5 +1,7 @@
 package br.com.caelum.genus.controllers;
 
+import java.time.LocalDate;
+
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -48,6 +50,7 @@ public class TrainingController {
 		if(trainee.firstTraining()) {
 			trainee.hasBegan();
 		}
+		trainee.atualizaStatusDescricao("Treinou", LocalDate.now());
 		
 		return new ModelAndView("/success");
 	}

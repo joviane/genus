@@ -46,12 +46,8 @@
 							</c:forEach>
 						</select>
 					</td>
-					<td class=${trainee.faltas.size()>2 ? "perigo" : ""}>
-						<select>
-							<c:forEach items="${trainee.faltas}" var="falta">
-								<option>${falta}</option>
-							</c:forEach>
-						</select>
+					<td>
+						<a href="/report/faltas/${trainee.id}" class=${trainee.faltas.size()>2 ? "perigo" : ""}>${trainee.faltas.size()}</a>
 					</td>
 					<td>
 						<a href="/training/trainee/${trainee.id}">Novo treino</a> |

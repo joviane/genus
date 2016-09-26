@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* br.com.caelum.genus.Boot
+web: java $JAVA_OPTS -Dspring.profiles.active=production -jar target/dependency/webapp-runner.jar --port $PORT --expand-war target/*.war

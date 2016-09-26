@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* Boot
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* br.com.caelum.genus.Boot

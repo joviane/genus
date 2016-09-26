@@ -20,7 +20,7 @@
 					<td>${hora.numeroTreinos}</td>
 					<td>${hora.totalTempo}</td>
 					<td>
-						<a href="/report/treinos/${hora.nome}">treinos</a>
+						<a href="/report/treinos/${hora.nome}">Treinos</a>
 					</td>
 				</tr>
 			</c:forEach>

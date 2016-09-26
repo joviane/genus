@@ -27,7 +27,7 @@ public class ReportController {
 		return modelAndView.addObject("listaHoras",timeSpent);
 	}
 	
-	@RequestMapping(value="/treinos	/{traineeNome}")
+	@RequestMapping(value="/treinos/{traineeNome}")
 	public ModelAndView horasGastasDetalhadoDoTrainee(@PathVariable String traineeNome){
 		ModelAndView modelAndView = new ModelAndView("/report/traineeDetails/detalhes");
 		List<InfoHorasDetalhado> timeSpentFromTrainee = traineeDao.findTimeSpentFromTrainee(traineeNome);
@@ -36,7 +36,7 @@ public class ReportController {
 	
 	@RequestMapping(value="/faltas/{traineeId}")
 	public ModelAndView faltasInstrutor(@PathVariable Integer traineeId){
-		ModelAndView modelAndView = new ModelAndView("report/faltas");
+		ModelAndView modelAndView = new ModelAndView("/report/faltas");
 		Trainee trainee = traineeDao.findOne(traineeId);
 		modelAndView.addObject("traineeNome", trainee.getName());
 		modelAndView.addObject("faltas", trainee.getFaltas());

@@ -16,6 +16,7 @@
 				<tr>
 					<td>${detalhes.dia}</td>
 					<td>${detalhes.tempoGasto}</td>
+					<td><pre>${detalhes.comments}</pre></td>
 				</tr>
 			</c:forEach>
 		</tbody>

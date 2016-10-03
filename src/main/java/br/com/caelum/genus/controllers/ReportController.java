@@ -22,7 +22,7 @@ public class ReportController {
 
 	@RequestMapping(value="/relatorioTrainees")
 	public ModelAndView horasGastas(){
-		ModelAndView modelAndView = new ModelAndView("/report/instrutor");
+		ModelAndView modelAndView = new ModelAndView("/report/lista");
 		List<InfoHorasGastas> timeSpent = traineeDao.findTimeSpent();
 		return modelAndView.addObject("listaHoras",timeSpent);
 	}

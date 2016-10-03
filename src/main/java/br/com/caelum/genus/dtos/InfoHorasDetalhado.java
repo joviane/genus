@@ -11,11 +11,13 @@ public class InfoHorasDetalhado {
 	private String traineeNome;
 	private LocalDate dia;
 	private String tempoGasto;
+	private String comments;
 	
 	public InfoHorasDetalhado(Training t) {
 		this.traineeNome = t.getTrainee().getName();
 		this.dia = t.getStartTime().toLocalDate();
 		this.tempoGasto = LocalDateTimeUtils.diferencaEmHorasEMinutosEntre(t.getStartTime(), t.getEndTime());
+		this.comments = t.getComments();
 	}
 
 	public String getTraineeNome() {
@@ -28,6 +30,10 @@ public class InfoHorasDetalhado {
 	
 	public String getTempoGasto() {
 		return tempoGasto;
+	}
+
+	public String getComments(){
+	    return this.comments;
 	}
 
 }

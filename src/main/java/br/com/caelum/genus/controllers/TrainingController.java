@@ -52,6 +52,6 @@ public class TrainingController {
 		}
 		trainee.atualizaStatusDescricao("Treinou", LocalDate.now());
 		
-		return new ModelAndView("/success");
+		return new ModelAndView("redirect:/report/treinos/" + trainee.getName());
 	}
 }

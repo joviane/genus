@@ -30,7 +30,7 @@ public class Training {
     /**
      * @deprecated hibernate eyes only
      */
-    public Training() {
+    public Training() {	
     }
     
     public Training(Trainee trainee) {

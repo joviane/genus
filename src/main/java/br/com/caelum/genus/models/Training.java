@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Training {
 
@@ -22,6 +24,7 @@ public class Training {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     @Lob
+    @Type(type = "text")
     private String comments;
 
     /**

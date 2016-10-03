@@ -29,7 +29,7 @@ public interface TraineeDao extends Repository<Trainee, Integer> {
     		+ " from Training t join t.trainee ta where t.endTime is not null group by ta.id")
 	public List<InfoHorasGastas> findTimeSpent();
 
-	@Query("select new br.com.caelum.genus.dtos.InfoHorasDetalhado(t)"
-	    		+ " from Training t join t.trainee ta where t.endTime is not null and ta.name = :traineeNome  group by t.id")
+    @Query("select new br.com.caelum.genus.dtos.InfoHorasDetalhado(t)"
+	    	+ " from Training t join t.trainee ta where t.endTime is not null and ta.name = :traineeNome group by t.id order by t.endTime desc")
 	public List<InfoHorasDetalhado> findTimeSpentFromTrainee(@Param("traineeNome") String traineeNome);
 }

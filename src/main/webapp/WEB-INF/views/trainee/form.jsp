@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="caelum"%>
-<caelum:page title="Instrutores">
+<caelum:page title="Instrutores" listActive="active">
 	<h3>Lista de instrutores</h3>
 	
 	<form action="/trainee/buscaPorStatus" method="post">
@@ -17,11 +17,13 @@
 		</select>
 		<input type="submit" value="Buscar"/>
 	</form>
+	
 	<form action="/trainee/buscaPorPeriodo" method="post">
 		<input type="date" name="inicio" />
 		<input type="date" name="fim" />
 		<input type="submit" value="Buscar"/>
 	</form>
+	
 	<table class="table">
 		<thead>
 			<tr>
@@ -61,17 +63,17 @@
 	<h3>Novo instrutor em treinamento</h3>
 
 	<form:form action="/trainee" commandName="trainee">
-		<label for="name">Nome:</label>
-		<form:input path="name" />
-		<form:errors path="name" />
+		<caelum:formFieldSpring label="Nome:" id="name">
+			<form:input path="name" />
+		</caelum:formFieldSpring>
 
-		<label for="name">Contato:</label>
-		<form:input path="contact" />
-		<form:errors path="contact" />
+		<caelum:formFieldSpring label="Contato:" id="contact">
+			<form:input path="contact" />
+		</caelum:formFieldSpring>
 
-		<label for="name">Assunto:</label>
-		<form:input path="subject" />
-		<form:errors path="subject" />
+		<caelum:formFieldSpring label="Assunto:" id="subject">
+			<form:input path="subject" />
+		</caelum:formFieldSpring>
 
 		<input type="submit" value="Gravar" />
 	</form:form>

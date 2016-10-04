@@ -24,63 +24,62 @@ import br.com.caelum.genus.models.Trainee;
 @Controller
 public class TraineeController {
 
-	@Autowired
-	private TraineeDao traineeDao;
-	
-	@Autowired
-	private FaltaDao faltaDao;
+    @Autowired
+    private TraineeDao traineeDao;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView form(Trainee trainee) {
-		return new ModelAndView("trainee/form").addObject("trainees", traineeDao.findAll());
-	}
-	
-	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView create(@Valid Trainee trainee, BindingResult result) {
-		if (result.hasErrors()) {
-			return form(trainee);
-		}
-		traineeDao.save(trainee);
-		return new ModelAndView("redirect:/trainee");
-	}
-	
-	@Transactional
-	@RequestMapping(value="/changeStatus", method = RequestMethod.PATCH)
-	public void changeStatus(@RequestBody InfoStatus status) {
-		Trainee trainee = traineeDao.findOne(status.getTraineeId());
-		trainee.setStatus(status.getStatus());
-	}
-	
-	@Transactional
-	@RequestMapping(value="/faltas/{traineeId}", method = RequestMethod.GET)
-	public ModelAndView faltaForm(@Valid Falta falta, BindingResult result, @PathVariable Integer traineeId) {
-		return new ModelAndView("trainee/falta").addObject("traineeId", traineeId);
-	}
+    @Autowired
+    private FaltaDao faltaDao;
 
-	@Transactional
-	@RequestMapping(value="/faltas/{traineeId}", method = RequestMethod.POST)
-	public ModelAndView faltaCreate(@Valid Falta falta, BindingResult result, @PathVariable Integer traineeId) {
-		if(result.hasErrors()){
-			ModelAndView modelAndView = new ModelAndView("trainee/falta");
-			return modelAndView.addObject("traineeId", traineeId);
-		}
-		Trainee trainee = traineeDao.findOne(traineeId);
-		falta.setSeguidas(trainee.consecutiveMiss());
-		trainee.adicionaFalta(falta);
-		faltaDao.save(falta);
-		ModelAndView modelAndView = new ModelAndView("redirect:/trainee");
-		return modelAndView.addObject("traineeId", traineeId);
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView form(Trainee trainee) {
+	return new ModelAndView("trainee/form").addObject("trainees", traineeDao.findAll());
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView create(@Valid Trainee trainee, BindingResult result) {
+	if (result.hasErrors()) {
+	    return form(trainee);
 	}
-	
-	@RequestMapping(value="/buscaPorStatus", method = RequestMethod.POST)
-	public ModelAndView filtraPorStatus(Trainee trainee, Status status){
-		return new ModelAndView("/trainee/form").addObject("trainees", traineeDao.findByProgressStatus(status));
+	traineeDao.save(trainee);
+	return new ModelAndView("redirect:/trainee");
+    }
+
+    @Transactional
+    @RequestMapping(value = "/changeStatus", method = RequestMethod.PATCH)
+    public void changeStatus(@RequestBody InfoStatus status) {
+	Trainee trainee = traineeDao.findOne(status.getTraineeId());
+	trainee.setStatus(status.getStatus());
+    }
+
+    @Transactional
+    @RequestMapping(value = "/faltas/{traineeId}", method = RequestMethod.GET)
+    public ModelAndView faltaForm(@Valid Falta falta, BindingResult result, @PathVariable Integer traineeId) {
+	return new ModelAndView("trainee/falta").addObject("traineeId", traineeId);
+    }
+
+    @Transactional
+    @RequestMapping(value = "/faltas/{traineeId}", method = RequestMethod.POST)
+    public ModelAndView faltaCreate(@Valid Falta falta, BindingResult result, @PathVariable Integer traineeId) {
+	if (result.hasErrors()) {
+	    ModelAndView modelAndView = new ModelAndView("trainee/falta");
+	    return modelAndView.addObject("traineeId", traineeId);
 	}
-	
-	@RequestMapping(value="/buscaPorPeriodo", method = RequestMethod.POST)
-	public ModelAndView filtraPorStatus(Trainee trainee, InfoDataTrainee info){
-		return new ModelAndView("/trainee/form")
-				.addObject("trainees",traineeDao.findByPeriodo(info.getInicio().atStartOfDay(), info.getFim().atStartOfDay()));
-	}
+	Trainee trainee = traineeDao.findOne(traineeId);
+	falta.setSeguidas(trainee.consecutiveMiss());
+	trainee.adicionaFalta(falta);
+	faltaDao.save(falta);
+	ModelAndView modelAndView = new ModelAndView("redirect:/trainee");
+	return modelAndView.addObject("traineeId", traineeId);
+    }
+
+    @RequestMapping(value = "/buscaPorStatus", method = RequestMethod.POST)
+    public ModelAndView filtraPorStatus(Trainee trainee, Status status) {
+	return new ModelAndView("/trainee/form").addObject("trainees", traineeDao.findByProgressStatus(status));
+    }
+
+    @RequestMapping(value = "/buscaPorPeriodo", method = RequestMethod.POST)
+    public ModelAndView filtraPorStatus(Trainee trainee, InfoDataTrainee info) {
+	return new ModelAndView("/trainee/form").addObject("trainees", traineeDao.findByPeriodo(info.getInicio().atStartOfDay(), info.getFim().atStartOfDay()));
+    }
 
 }

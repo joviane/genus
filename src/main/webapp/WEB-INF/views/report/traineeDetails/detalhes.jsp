@@ -2,7 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib tagdir="/WEB-INF/tags" prefix="caelum" %>
 
-<caelum:page title="Detalhes">
+<caelum:page title="Detalhes" reportActive="active">
 	<h3>Treinos de ${listaHorasDetalhadas.get(0).traineeNome}</h3>
 	<table class="table">
 		<thead>

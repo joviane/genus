@@ -5,13 +5,13 @@
 <caelum:page title="Falta">
 
 	<form:form action="/trainee/faltas/${traineeId}" commandName="falta">
-		<label for="name">Data:</label>
-		<form:input type="date" path="data" />
-		<form:errors path="data" />
+		<caelum:formFieldSpring label="Data:" id="data">
+			<form:input type="date" path="data" />
+		</caelum:formFieldSpring>
 
-		<label for="name">Motivo:</label>
-		<form:input path="motivo" />
-		<form:errors path="motivo" />
+		<caelum:formFieldSpring label="Motivo:" id="motivo">
+			<form:input path="motivo" />
+		</caelum:formFieldSpring>
 
 		<input type="submit" value="Gravar" />
 	</form:form>

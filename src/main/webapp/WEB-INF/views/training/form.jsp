@@ -8,10 +8,10 @@
 	<h2>Novo treinamento para - ${trainee.name}</h2>
 
 	<form:form action="/training/trainee/${trainee.id}" commandName="infoTraining" >
-		<form:errors path="*"/>
-		<label for="comments">Comentários:</label>
-		<form:textarea path="comments" rows="30" cols="150"/>
-		<form:errors path="comments" />
+		<caelum:formFieldSpring id="comments" label="Comentários">
+			<form:textarea path="comments" rows="30" cols="150"/>
+		</caelum:formFieldSpring>
+		
 		<form:hidden path="trainingId" value="${trainingId}"/>
 	
 		<input type="submit" value="Finalizar treino" class="btn btn-primary" />

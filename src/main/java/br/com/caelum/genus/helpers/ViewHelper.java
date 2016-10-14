@@ -9,8 +9,8 @@ import br.com.caelum.genus.models.Status;
 @RequestScope
 public class ViewHelper {
 
-	public Status[] statusList(){
-		return Status.values();
-	}
-	
+    public Status[] statusList() {
+	return Status.values();
+    }
+
 }

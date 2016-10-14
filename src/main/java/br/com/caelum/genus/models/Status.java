@@ -8,7 +8,8 @@ public enum Status {
     DISMISSED,
     DELAYED,
     READY;
-	public String getName() { 
-		return name(); 
-	}
+
+    public String getName() {
+	return name();
+    }
 }

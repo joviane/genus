@@ -5,10 +5,10 @@ import java.time.temporal.ChronoUnit;
 
 public class LocalDateTimeUtils {
 
-	public static String diferencaEmHorasEMinutosEntre(LocalDateTime startTime, LocalDateTime endTime) {
-		long minutes = ChronoUnit.MINUTES.between(startTime, endTime)%60;
-		long hours = ChronoUnit.HOURS.between(startTime, endTime);
-		return hours + ":" + minutes;
-	}
-	
+    public static String diferencaEmHorasEMinutosEntre(LocalDateTime startTime, LocalDateTime endTime) {
+	long minutes = ChronoUnit.MINUTES.between(startTime, endTime) % 60;
+	long hours = ChronoUnit.HOURS.between(startTime, endTime);
+	return hours + ":" + minutes;
+    }
+
 }

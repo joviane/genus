@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.perigo {
+	color: red
+}
+
 /*
  * Sidebar
  */

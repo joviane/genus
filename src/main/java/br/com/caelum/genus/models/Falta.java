@@ -8,14 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Falta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @DateTimeFormat(iso = ISO.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
     private String motivo;
     private int seguidas;

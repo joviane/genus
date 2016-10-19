@@ -9,8 +9,7 @@ public class InfoTraining {
     @NotBlank
     private String comments;
     private Integer trainingId;
-    
-    
+
     public void updateTrainingDataFromForm(Training training) {
 	training.update(comments);
     }
@@ -30,5 +29,5 @@ public class InfoTraining {
     public void setComments(String comments) {
 	this.comments = comments;
     }
-    
+
 }

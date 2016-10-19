@@ -4,24 +4,24 @@ import br.com.caelum.genus.models.Status;
 
 public class InfoStatus {
 
-	private Status status;
-	
-	private Integer traineeId;
+    private Status status;
 
-	public Status getStatus() {
-		return status;
-	}
+    private Integer traineeId;
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+    public Status getStatus() {
+	return status;
+    }
 
-	public Integer getTraineeId() {
-		return traineeId;
-	}
+    public void setStatus(Status status) {
+	this.status = status;
+    }
 
-	public void setTraineeId(Integer id) {
-		this.traineeId = id;
-	}
+    public Integer getTraineeId() {
+	return traineeId;
+    }
+
+    public void setTraineeId(Integer id) {
+	this.traineeId = id;
+    }
 
 }

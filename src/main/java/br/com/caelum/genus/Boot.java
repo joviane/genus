@@ -12,22 +12,22 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @SpringBootApplication
 @EntityScan(basePackageClasses = { Boot.class, Jsr310JpaConverters.class })
 public class Boot extends SpringBootServletInitializer {
-    
-	@Bean
-	public InternalResourceViewResolver view() {
-		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-		internalResourceViewResolver.setPrefix("/WEB-INF/views/");
-		internalResourceViewResolver.setSuffix(".jsp");
-		internalResourceViewResolver.setExposedContextBeanNames("viewHelper");
-		return internalResourceViewResolver;
-	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(Boot.class, args);
-	}
-	
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(Boot.class);
-	}
+    @Bean
+    public InternalResourceViewResolver view() {
+	InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+	internalResourceViewResolver.setPrefix("/WEB-INF/views/");
+	internalResourceViewResolver.setSuffix(".jsp");
+	internalResourceViewResolver.setExposedContextBeanNames("viewHelper");
+	return internalResourceViewResolver;
+    }
+
+    public static void main(String[] args) {
+	SpringApplication.run(Boot.class, args);
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	return application.sources(Boot.class);
+    }
 }

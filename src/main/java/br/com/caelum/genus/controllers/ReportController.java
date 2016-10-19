@@ -16,31 +16,31 @@ import br.com.caelum.genus.models.Trainee;
 @RequestMapping("/report")
 @Controller
 public class ReportController {
-	
-	@Autowired
-	private TraineeDao traineeDao;
 
-	@RequestMapping(value="/relatorioTrainees")
-	public ModelAndView horasGastas(){
-		ModelAndView modelAndView = new ModelAndView("/report/lista");
-		List<InfoHorasGastas> timeSpent = traineeDao.findTimeSpent();
-		return modelAndView.addObject("listaHoras",timeSpent);
-	}
-	
-	@RequestMapping(value="/treinos/{traineeNome}")
-	public ModelAndView horasGastasDetalhadoDoTrainee(@PathVariable String traineeNome){
-		ModelAndView modelAndView = new ModelAndView("/report/traineeDetails/detalhes");
-		List<InfoHorasDetalhado> timeSpentFromTrainee = traineeDao.findTimeSpentFromTrainee(traineeNome);
-		return modelAndView.addObject("listaHorasDetalhadas",timeSpentFromTrainee);
-	}
-	
-	@RequestMapping(value="/faltas/{traineeId}")
-	public ModelAndView faltasInstrutor(@PathVariable Integer traineeId){
-		ModelAndView modelAndView = new ModelAndView("/report/faltas");
-		Trainee trainee = traineeDao.findOne(traineeId);
-		modelAndView.addObject("traineeNome", trainee.getName());
-		modelAndView.addObject("faltas", trainee.getFaltas());
-		return modelAndView;
-	}
-	
+    @Autowired
+    private TraineeDao traineeDao;
+
+    @RequestMapping(value = "/relatorioTrainees")
+    public ModelAndView horasGastas() {
+	ModelAndView modelAndView = new ModelAndView("/report/lista");
+	List<InfoHorasGastas> timeSpent = traineeDao.findTimeSpent();
+	return modelAndView.addObject("listaHoras", timeSpent);
+    }
+
+    @RequestMapping(value = "/treinos/{traineeNome}")
+    public ModelAndView horasGastasDetalhadoDoTrainee(@PathVariable String traineeNome) {
+	ModelAndView modelAndView = new ModelAndView("/report/traineeDetails/detalhes");
+	List<InfoHorasDetalhado> timeSpentFromTrainee = traineeDao.findTimeSpentFromTrainee(traineeNome);
+	return modelAndView.addObject("listaHorasDetalhadas", timeSpentFromTrainee);
+    }
+
+    @RequestMapping(value = "/faltas/{traineeId}")
+    public ModelAndView faltasInstrutor(@PathVariable Integer traineeId) {
+	ModelAndView modelAndView = new ModelAndView("/report/faltas");
+	Trainee trainee = traineeDao.findOne(traineeId);
+	modelAndView.addObject("traineeNome", trainee.getName());
+	modelAndView.addObject("faltas", trainee.getFaltas());
+	return modelAndView;
+    }
+
 }

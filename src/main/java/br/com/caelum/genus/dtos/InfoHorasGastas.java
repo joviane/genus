@@ -2,31 +2,31 @@ package br.com.caelum.genus.dtos;
 
 public class InfoHorasGastas {
 
-	private String nome;
-	private long numeroTreinos;
-	private String totalTempo;
-	
-	public InfoHorasGastas(String nome, long numeroTreinos, long totalHoras, long totalMinutos) {
-		this.nome = nome;
-		this.numeroTreinos = numeroTreinos;
-		this.totalTempo = tempoTotalEmString(totalHoras, totalMinutos);
-	}
+    private String nome;
+    private long numeroTreinos;
+    private String totalTempo;
 
-	public String getNome() {
-		return nome;
-	}
+    public InfoHorasGastas(String nome, long numeroTreinos, long totalHoras, long totalMinutos) {
+	this.nome = nome;
+	this.numeroTreinos = numeroTreinos;
+	this.totalTempo = tempoTotalEmString(totalHoras, totalMinutos);
+    }
 
-	public long getNumeroTreinos() {
-		return numeroTreinos;
-	}
+    public String getNome() {
+	return nome;
+    }
 
-	public String getTotalTempo() {
-		return totalTempo;
-	}
+    public long getNumeroTreinos() {
+	return numeroTreinos;
+    }
 
-	private String tempoTotalEmString(long totalHoras, long totalMinutos) {
-		long minutos = totalHoras * 60 + totalMinutos;
-		return minutos/60 + ":" + minutos%60;
-	}
+    public String getTotalTempo() {
+	return totalTempo;
+    }
+
+    private String tempoTotalEmString(long totalHoras, long totalMinutos) {
+	long minutos = totalHoras * 60 + totalMinutos;
+	return minutos / 60 + ":" + minutos % 60;
+    }
 
 }

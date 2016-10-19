@@ -22,36 +22,36 @@ import br.com.caelum.genus.models.Training;
 @RequestMapping("/training")
 @Controller
 public class TrainingController {
-	@Autowired
-	private TrainingDao trainingDao;
-	@Autowired
-	private TraineeDao traineeDao;
+    @Autowired
+    private TrainingDao trainingDao;
+    @Autowired
+    private TraineeDao traineeDao;
 
-	@RequestMapping(value = "/trainee/{traineeId}", method = RequestMethod.GET)
-	public ModelAndView form(InfoTraining info, @PathVariable Integer traineeId) {
-		ModelAndView modelAndView = new ModelAndView("/training/form");
-		Trainee trainee = traineeDao.findOne(traineeId);
-		modelAndView.addObject("trainee", trainee);
-		Training training = trainingDao.save(new Training(trainee));
-		modelAndView.addObject("trainingId", training.getId());
-		return modelAndView;
-	}
+    @RequestMapping(value = "/trainee/{traineeId}", method = RequestMethod.GET)
+    public ModelAndView form(InfoTraining info, @PathVariable Integer traineeId) {
+	ModelAndView modelAndView = new ModelAndView("/training/form");
+	Trainee trainee = traineeDao.findOne(traineeId);
+	modelAndView.addObject("trainee", trainee);
+	Training training = trainingDao.save(new Training(trainee));
+	modelAndView.addObject("trainingId", training.getId());
+	return modelAndView;
+    }
 
-	@Transactional
-	@RequestMapping(value = "/trainee/{traineeId}", method = RequestMethod.POST)
-	public ModelAndView create(@Valid InfoTraining info, BindingResult result, @PathVariable Integer traineeId) {
-		if (result.hasErrors()) {
-			return form(info, traineeId);
-		}
-		Training training = trainingDao.findOne(info.getTrainingId());
-		info.updateTrainingDataFromForm(training);
-		
-		Trainee trainee = traineeDao.findOne(traineeId);
-		if(trainee.firstTraining()) {
-			trainee.hasBegan();
-		}
-		trainee.atualizaStatusDescricao("Treinou", LocalDate.now());
-		
-		return new ModelAndView("redirect:/report/treinos/" + trainee.getName());
+    @Transactional
+    @RequestMapping(value = "/trainee/{traineeId}", method = RequestMethod.POST)
+    public ModelAndView create(@Valid InfoTraining info, BindingResult result, @PathVariable Integer traineeId) {
+	if (result.hasErrors()) {
+	    return form(info, traineeId);
 	}
+	Training training = trainingDao.findOne(info.getTrainingId());
+	info.updateTrainingDataFromForm(training);
+
+	Trainee trainee = traineeDao.findOne(traineeId);
+	if (trainee.firstTraining()) {
+	    trainee.hasBegan();
+	}
+	trainee.atualizaStatusDescricao("Treinou", LocalDate.now());
+
+	return new ModelAndView("redirect:/report/treinos/" + trainee.getName());
+    }
 }

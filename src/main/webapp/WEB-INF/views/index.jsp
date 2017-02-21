@@ -6,7 +6,7 @@
 
 <caelum:page title="Login">
 	<h1>Treinamento de instrutores Caelum</h1>
-	<form:form action="/login">
+	<form:form action="/user">
 		<input type="submit" class="btn btn-primary" value="Login (via Github)" />
 	</form:form>
 </caelum:page>

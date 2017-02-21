@@ -1,6 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@attribute name="title" %>
 <%@attribute name="listActive" required="false" %>
 <%@attribute name="reportActive" required="false" %>
@@ -16,7 +15,7 @@
 	<body>
 		<div class="container-fluid">
 			<div class="row">
-				<security:authorize access="isAuthenticated()">
+				<!-- SE ESTIVER LOGADO -->
 	
 					<div class="col-sm-3 col-md-2 sidebar">
 						<ul class="nav nav-sidebar">
@@ -27,7 +26,7 @@
 							<li><a href="/logout">Logout</a></li>
 						</ul>
 					</div>
-				</security:authorize>
+				<!-- FIM -->
 				
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 					<jsp:doBody/>

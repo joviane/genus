@@ -1,18 +1,20 @@
 package br.com.caelum.genus.controllers;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import java.security.Principal;
 
-@Controller
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class HomeController {
-    
+
     @RequestMapping("/")
-    public ModelAndView index() {
-	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	System.out.println(auth.getName());
-	return new ModelAndView("/index");
+    public String index() {
+	return "index";
+    }
+
+    @RequestMapping("/user")
+    public Principal user(Principal principal) {
+	return principal;
     }
 }

@@ -39,7 +39,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="trainee" items="${trainees}">
-				<tr>
+				<tr class=${trainee.faltas.size() > 2 ? "perigo" : ""}>
 					<td>${trainee.name}</td>
 					<td>${trainee.contact}</td>
 					<td>
@@ -52,7 +52,7 @@
 						</select>
 					</td>
 					<td>
-						<a href="/report/faltas/${trainee.id}" class=${trainee.faltas.size()>2 ? "perigo" : ""}>${trainee.faltas.size()}</a>
+						<a href="/report/faltas/${trainee.id}">${trainee.faltas.size()}</a>
 					</td>
 					<td>
 						<a href="/training/trainee/${trainee.id}">Novo treino</a> |
@@ -89,8 +89,11 @@
 					traineeId : id
 				});
 			var request = new XMLHttpRequest();
+			var token = document.getElementsByName("_csrf")[0].value;
+			var header = "X-CSRF-Token";
 			request.open("PATCH", "/trainee/changeStatus");
-			request.setRequestHeader("Content-Type", 'application/json');
+			request.setRequestHeader("Content-Type", "application/json");
+			request.setRequestHeader(header, token);
 			request.send(infoRequest);
 		}
 	</script>

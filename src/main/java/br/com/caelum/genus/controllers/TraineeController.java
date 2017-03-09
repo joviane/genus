@@ -1,4 +1,4 @@
-package br.com.caelum.genus.controllers;
+	package br.com.caelum.genus.controllers;
 
 import javax.validation.Valid;
 
@@ -32,7 +32,7 @@ public class TraineeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView form(Trainee trainee) {
-	return new ModelAndView("trainee/form").addObject("trainees", traineeDao.findAll());
+	return new ModelAndView("trainee/form").addObject("trainees", traineeDao.findByProgressStatus(Status.TO_START, Status.BEGAN, Status.ONGOING));
     }
 
     @RequestMapping(method = RequestMethod.POST)

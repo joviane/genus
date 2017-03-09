@@ -20,7 +20,8 @@ public interface TraineeDao extends Repository<Trainee, Integer> {
 
     public Trainee findOne(Integer id);
 
-    public List<Trainee> findByProgressStatus(Status status);
+    @Query("select t from Trainee t where t.progress.status in :status")
+    public List<Trainee> findByProgressStatus(@Param("status") Status... status);
 
     @Query("select t.trainee from Training t join t.trainee where t.startTime between :inicio and :fim ")
     public List<Trainee> findByPeriodo(@Param("inicio") LocalDateTime startTime, @Param("fim") LocalDateTime endTime);

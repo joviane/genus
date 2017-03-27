@@ -17,7 +17,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-	http.addFilterAfter(oauth2ClientContextFilter, SecurityContextPersistenceFilter.class)
+	http.csrf().disable().addFilterAfter(oauth2ClientContextFilter, SecurityContextPersistenceFilter.class)
 		.antMatcher("/**").authorizeRequests().antMatchers("/", "/assets/**").permitAll()
 		.anyRequest().authenticated();
     }

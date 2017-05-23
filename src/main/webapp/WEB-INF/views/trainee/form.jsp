@@ -89,8 +89,6 @@
 					traineeId : id
 				});
 			var request = new XMLHttpRequest();
-			var token = document.getElementsByName("_csrf")[0].value;
-			var header = "X-CSRF-Token";
 			request.open("PATCH", "/trainee/changeStatus");
 			request.setRequestHeader("Content-Type", "application/json");
 			request.setRequestHeader(header, token);
